@@ -1,0 +1,6 @@
+screenshots
+docker-compose.yml
+Dockerfile
+.env*
+venv
+.xssor_secret_key

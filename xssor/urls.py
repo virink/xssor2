@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from xssor.index.views import index, cmd_create, cmd, \
-                            probe_create, probe_js, probe_txt, probe_status
+    probe_create, probe_js, probe_txt, probe_status
 from django.views.generic.base import RedirectView
 
 urlpatterns = [
@@ -30,4 +30,3 @@ urlpatterns = [
     url(r'^probe/(?P<pid>\w+).txt/?$', probe_txt),
     url(r'^probe/status/?$', probe_status),
 ]
-

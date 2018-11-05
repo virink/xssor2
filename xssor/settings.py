@@ -20,10 +20,26 @@ PROJECT_DIR = os.path.join(BASE_DIR, 'xssor')
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1$v^828b3=1=+ze+*_enw0c$v$_#e4jh&k_2r_xdrd%q0x7_gc'
+''' GENERATE SECRET KEY '''
+if not os.environ.get('SECRET_KEY'):
+    try:
+        with open('.xssor_secret_key', 'rb') as secret:
+            SECRET_KEY = secret.read()
+    except (OSError, IOError):
+        SECRET_KEY = None
+    if not SECRET_KEY:
+        SECRET_KEY = os.urandom(50)
+        try:
+            with open('.xssor_secret_key', 'wb') as secret:
+                secret.write(SECRET_KEY)
+                secret.flush()
+        except (OSError, IOError):
+            pass
+''' SERVER SETTINGS '''
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", 0) in ["True", "1"]
+DOMAIN = os.environ.get("DOMAIN", "xssor.io")
 
 ALLOWED_HOSTS = ['*']
 
