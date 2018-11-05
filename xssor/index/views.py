@@ -265,11 +265,11 @@ def probe_create(req):
 
 
 def probe_js(req, pid):
-    probe_txt = os.path.join(PROBEDIR, '%s.txt' % pid)
-    if os.path.exists(probe_txt):
-        r = 'xssorsay="One time per day, u can try again tomorrow.";'
-        resp = HttpResponse(r, content_type='application/x-javascript')
-        return resp
+    # probe_txt = os.path.join(PROBEDIR, '%s.txt' % pid)
+    # if os.path.exists(probe_txt):
+    #     r = 'xssorsay="One time per day, u can try again tomorrow.";'
+    #     resp = HttpResponse(r, content_type='application/x-javascript')
+    #     return resp
     try:
         f = open(os.path.join(PROBEDIR, '%s.js' % pid))
         c = f.read()
